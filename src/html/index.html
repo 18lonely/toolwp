@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../js/preload.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="sidebar">
+            <div class="button-profile nav-style">
+                <div class="icon">
+                    <img src="../icon/icons8-chrome.svg" alt="ICON_CHROME">
+                </div>
+                <div class="title">Profile</div>
+            </div>
+            <div class="button-imgs nav-style">
+                <div class="icon">
+                    <img src="../icon/icon-image.svg" alt="ICON_CHROME">
+                </div>
+                <div class="title">Tải ảnh</div>
+            </div>
+            <div class="button-auto nav-style">
+                <div class="icon">
+                    <img src="../icon/icon-auto.svg" alt="ICON_CHROME">
+                </div>
+                <div class="title">Tự động</div>
+            </div>
+        </div>
+        <div class="option">
+            <div class="combo-function">
+                <button class="style-button button-add-profile">Add Profile</button>
+            </div>
+            <div class="list-profile">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-1">ID</th>
+                            <th class="th-2">NAME</th>
+                            <th class="th-3">PROXY</th>
+                            <th class="th-4">STORAGE</th>
+                            <th class="th-5">STATUS</th>
+                            <th class="th-6"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="auto">
+            <div class="extract-list">
+                <div class="wave-group input-sheet">
+                    <input class="input input-link-sheet" type="text" required="">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0;">L</span>
+                        <span class="label-char" style="--index: 1;">i</span>
+                        <span class="label-char" style="--index: 2;">n</span>
+                        <span class="label-char" style="--index: 3;">k</span>
+                        <span class="label-char" style="--index: 7; padding: 3px;"></span>
+                        <span class="label-char" style="--index: 5;">S</span>
+                        <span class="label-char" style="--index: 6;">h</span>
+                        <span class="label-char" style="--index: 9;">e</span>
+                        <span class="label-char" style="--index: 10;">e</span>
+                        <span class="label-char" style="--index: 11;">t</span>
+                    </label>
+                </div>
+                <div class="btn-extract">
+                    <button class="style-button button-extract">Extract</button>
+                </div>
+            </div>
+            <div class="combo-choose-profile">
+                <div>
+                    <button class="style-button button-run-auto">Run</button>
+                </div>
+                <div class="search-container">
+                    <input type="text" name="text" class="input input-search-profile" placeholder="search...">
+                </div>
+            </div>
+
+            <div class="table-extract-sheet">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-1">KEYWORD</th>
+                            <th class="th-2">TYPE</th>
+                            <th class="th-3">CATEGORY</th>
+                            <th class="th-4">TAGS</th>
+                            <th class="th-5">META</th>
+                            <th class="th-6">DOCS</th>
+                            <th class="th-7">LSI KEYWORD</th>
+                            <th class="th-8">STATUS</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../js/handle.js" type="module"></script>
+</body>
+</html>

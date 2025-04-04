@@ -1,0 +1,20 @@
+{
+  "name": "tool_auto_post",
+  "version": "1.0.0",
+  "description": "Tool auto post wordpress",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "watch": "nodemon --exec electron ."
+  },
+  "author": "HoanPD",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "electron": "^35.1.2",
+    "mongoose": "^8.13.1",
+    "nodemon": "^3.1.9",
+    "selenium-webdriver": "^4.30.0"
+  }
+}
