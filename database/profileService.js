@@ -1,4 +1,4 @@
-const {findProfile, updateProfile, deleteProfile, findProfiles, saveProfile} = require('./profileDb')
+const {findProfile, updateProfile, deleteProfile, findProfiles, saveProfile, searchProfile} = require('./profileDb')
 const Profile = require('./profileModel')
 const mongoose = require('mongoose')
 
@@ -16,6 +16,15 @@ exports.getProfileByID = async (id) => {
         }
     } catch (err) {
         throw new Error('Unable to find profile!')
+    }
+}
+
+exports.searchProfile = async (key) => {
+    try {
+        const result = await searchProfile(key)
+        return result
+    } catch(err) {
+        throw new Error('Cannot search profile!')
     }
 }
 

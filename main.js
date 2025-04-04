@@ -68,3 +68,7 @@ ipcMain.handle('AddNewProfile', async (event, newProfile) => {
 ipcMain.handle('AutoPost', async (event, locateProfile, base, listPost) => {
   await auto(locateProfile, base, listPost)
 })
+
+ipcMain.handle('SearchProfile', async (event, key) => {
+  return await profileService.searchProfile(key)
+})

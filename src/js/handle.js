@@ -6,6 +6,10 @@ const addNewProfile = async (newProfile) => {
     return true
 }
 
+const searchProfile = async (key) => {
+    return await ipcRenderer.invoke('SearchProfile', key)
+}
+
 const getAllProfile = async (page, limit) => {
     let result = await ipcRenderer.invoke('GetAllProfile', page, limit)
     return result
