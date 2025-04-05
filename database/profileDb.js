@@ -14,9 +14,9 @@ const findProfiles = async (obj, selectedValues, skip, limit) => {
 const searchProfile = async (key) => {
     return await Profile.find({
         $or: [
-            { profilename: { $regex: key, $options: 'i' } }
+            { base: { $regex: key, $options: 'i' } }
         ]
-    }).sort({ profilename: 1 }).exec().then(profiles => profiles.map(profile => ({
+    }).sort({ base: 1 }).exec().then(profiles => profiles.map(profile => ({
         ...profile,
         _id: profile._id.toString()
     })))

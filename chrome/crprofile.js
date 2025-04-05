@@ -77,8 +77,8 @@ const values = {keyword: "Casio Online 3King",
                 lsikeyword: 'NULL'
             }
 
-const URL_NEW_PAGE = '/wp-admin/post-new.php?post_type=page'
-const URL_NEW_POST = '/wp-admin/post-new.php'
+const URL_NEW_PAGE = 'wp-admin/post-new.php?post_type=page'
+const URL_NEW_POST = 'wp-admin/post-new.php'
 
 const MD2HTML = (md) => {
     md = md.replace(/(#{1,4})\s*\*\*(.*?)\*\*/g, (match, hashes, content) => {
@@ -311,7 +311,6 @@ const auto = async (locateProfile, base, listPost) => {
 }
 
 (async function() {
-    console.log(getIDDocs('https://docs.google.com/document/d/1TTfd0iSy-_MNSWD875NlEsnnT1Dp9FWFzTjk9z3fdk8/edit?tab=t.0'))
     // const driver = await initBrowser('D:\\Code\\Tool Auto Post Wordpress\\chrome\\profiles\\67ee91c53064b4cb117a6c96')
     // await autoPostToWordPress(driver, 'https://79king7.net', values)
 })()

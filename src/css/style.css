@@ -25,6 +25,7 @@ html, body {
 }
 
 .nav-style {
+    user-select: none;
     display: flex;
     border-radius: 8px;
     width: 100%;
@@ -109,6 +110,11 @@ thead {
     background-color: white;
 }
 
+table, tr, th, td {
+    border: 1px dashed red;
+    border-collapse: collapse;
+}
+
 th, td {
     padding: 5px 0px;
     text-align: center;
@@ -134,11 +140,6 @@ th {
 td {
     border-color: blue!important;
     height: 30px;
-}
-
-table, tr, th, td {
-    border: 1px dashed #d9d9d9;
-    border-collapse: collapse;
 }
 
 .list-profile {
@@ -335,6 +336,12 @@ table, tr, th, td {
     background-image: linear-gradient(45deg, #b0b809 0%, #0d4773  51%, #ab1093  100%);
 }
 
+.table-extract-sheet {
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
 .table-extract-sheet table {
     width: 100%;
 }
@@ -380,6 +387,7 @@ td > input:focus {
   
 .search-container {
     margin-left: 20px;
+    position: relative;
 }
   
 .search-container .input {
@@ -389,7 +397,6 @@ td > input:focus {
     transition: .2s linear;
     border: 2.5px solid black;
     font-size: 14px;
-    text-transform: uppercase;
     letter-spacing: 2px;
 }
   
@@ -408,4 +415,27 @@ td > input:focus {
     50% {
       transform: translateY(calc(-50% - 5px)) scale(1.1);
     }
+}
+
+.values-found {
+    /* display: flexbox; */
+    display: none;
+    position: absolute;
+    border: 1px dashed black;
+    background-color: #f6f6f6;
+    max-height: 300px;
+    overflow-x: auto;
+    width: 400px;
+    z-index: 4;
+}
+
+.values-found .item {
+    height: 40px;
+    padding: 10px;
+}
+
+.values-found .item:hover {
+    cursor: pointer;
+    background-color: #d3d3d3;
+    user-select: none;
 }

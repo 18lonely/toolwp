@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const profileSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    profilename: {
+    base: {
         type: String,
         require: true
     },

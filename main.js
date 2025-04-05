@@ -48,7 +48,6 @@ ipcMain.handle('GetProfileByID', async (event, id) => {
 })
 
 ipcMain.handle('UpdateProfile', async (event, id, newProfile) => {
-  console.log(id)
   return await profileService.updateProfile(id, newProfile)
 })
 

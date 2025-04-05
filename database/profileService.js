@@ -33,7 +33,6 @@ exports.updateProfile = async (id, newProfile) => {
         const profile = new Profile()
         const profileFound = await findProfile({_id: id}, '-__v')
 
-        console.log(id)
         if(!profileFound) {
             throw new Error('Profile not found!')
         }

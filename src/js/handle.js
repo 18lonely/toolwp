@@ -58,6 +58,9 @@ let buttonRunAuto = document.querySelector('.button-run-auto')
 let tableProfile = document.querySelector('.list-profile table')
 let tableExtractSheet = document.querySelector('.table-extract-sheet table')
 
+let inputSearch = document.querySelector('.input-search-profile')
+let listValueFound = document.querySelector('.values-found')
+
 const inputLinkSheet = document.querySelector('.input-link-sheet')
 
 const createDIV = (className, text='', html='') => {
@@ -150,7 +153,7 @@ let createTh = (className, text) => {
 let createHeaderTableProfile = () => {
     let tr = createTr('')
     let tdID = createTh('th-1', 'ID')
-    let tdName = createTh('th-2', 'Name')
+    let tdName = createTh('th-2', 'Base')
     let tdProxy = createTh('th-3', 'Proxy')
     let tdStorage = createTh('th-4', 'Storage')
     let tdStatus = createTh('th-5', 'Status')
@@ -166,11 +169,11 @@ const addFormEditProfile = async (id, profile) => {
     let divTitle = createDIV('title', 'New Profile')
 
     let divOne = createDIV('wave-group')
-    let inputProfileName = createInput('input input-profile-name')
-    inputProfileName.value = profile._doc.profilename
+    let inputBase = createInput('input input-profile-name')
+    inputBase.value = profile._doc.base
     let spanOne = createSpan('bar')
-    let labelOne = createSpeLabel('label', 'Profile Name')
-    appendChilds(divOne, [inputProfileName, spanOne, labelOne])
+    let labelOne = createSpeLabel('label', 'Base')
+    appendChilds(divOne, [inputBase, spanOne, labelOne])
 
     let divTwo = createDIV('wave-group')
     let inputProxy = createInput('input input-profile-name')
@@ -190,7 +193,7 @@ const addFormEditProfile = async (id, profile) => {
     buttonAdd.addEventListener('click', async (e) => {
         e.preventDefault()
         let newProfile = {
-            profilename: inputProfileName.value,
+            base: inputBase.value,
             proxy: inputProxy.value,
             storage: profile._doc.storage
         }
@@ -208,7 +211,7 @@ const addFormEditProfile = async (id, profile) => {
 let createRowValueProfile = (profile) => {
     let tr = createTr("")
     let tdID = createTd('id td-1', profile._id, true)
-    let tdName = createTd('name td-2', profile._doc.profilename, true)
+    let tdName = createTd('name td-2', profile._doc.base, true)
     let tdProxy = createTd('proxy td-3', profile._doc.proxy, true)
     let tdStorage = createTd('storage td-4', profile._doc.storage, true)
     let tdStatus = createTd('status td-5', "", false)
@@ -256,13 +259,13 @@ const addFormAddProfile = () => {
     let popup = createDIV('popup-add-new-profile')
     let form = createForm('form-add-new-profile')
 
-    let divTitle = createDIV('title', 'New Profile')
+    let divTitle = createDIV('title', 'Update Profile')
 
     let divOne = createDIV('wave-group')
-    let inputProfileName = createInput('input input-profile-name')
+    let inputBase = createInput('input input-profile-name')
     let spanOne = createSpan('bar')
-    let labelOne = createSpeLabel('label', 'Profile Name')
-    appendChilds(divOne, [inputProfileName, spanOne, labelOne])
+    let labelOne = createSpeLabel('label', 'Base')
+    appendChilds(divOne, [inputBase, spanOne, labelOne])
 
     let divTwo = createDIV('wave-group')
     let inputProxy = createInput('input input-profile-name')
@@ -281,7 +284,7 @@ const addFormAddProfile = () => {
     buttonAdd.addEventListener('click', async (e) => {
         e.preventDefault()
         let profile = {
-            profilename: inputProfileName.value,
+            base: inputBase.value,
             proxy: inputProxy.value,
             storage: ""
         }
@@ -333,12 +336,17 @@ buttonExtractSheet.addEventListener('click', async () => {
         let tr = createRowValueExtractSheet(values)
         tableExtractSheet.appendChild(tr)
     }
-
-    console.log(listPost)
 })
 
 buttonRunAuto.addEventListener('click', async () => {
-    await autoPost('D:\\Code\\Tool Auto Post Wordpress\\chrome\\profiles\\67ee91c53064b4cb117a6c96', 'https://79king7.net', listPost)
+    let values = inputSearch.value.split(' - ')
+    if(!values[0]) return
+
+    let profileChoose = await getProfileById(values[0])
+
+    if(!profileChoose) return
+
+    await autoPost(profileChoose._doc.storage, profileChoose._doc.base, listPost)
 })
 
 // Switch view
@@ -366,6 +374,34 @@ buttonAuto.addEventListener('click', async () => {
     await updateTableProfile()
 
     // Offview other
+})
+
+inputSearch.addEventListener('change', async () => {
+    if(inputSearch.value == '') {
+        listValueFound.style.display = 'none'
+        return
+    }
+    let profileFound = await searchProfile(inputSearch.value)
+    listValueFound.innerHTML = ''
+    if(!profileFound) {
+        listValueFound.style.display = 'none'
+        return
+    }
+
+    listValueFound.style.display = 'block'
+    console.log(listValueFound.style.display)
+
+    for(let profile of profileFound) {
+        console.log(profile)
+        let div = createDIV('item', profile._id + ' - ' + profile._doc.base)
+        div.id = profile._id
+
+        div.addEventListener('click', (e) => {
+            inputSearch.value = e.target.innerText
+            listValueFound.style.display = 'none'
+        })
+        listValueFound.appendChild(div)
+    }
 });
 
 (async function() {
